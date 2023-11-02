@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+//We Import css Properties From The App.css File which Not Only Affects Our App.js File But Also
+// It Affects Anything that Component That's Rendered In The Browser That Time
+
+import BlogDetails from './BlogDetails';
+import Create from './Create';
+import Home from './Home';
+import Navbar from "./Navbar";
+import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
+import NotFound from './NotFound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="content">
+          <Routes>
+            <Route exact path='/' Component={Home} />   {/* Here is Where Yoe Initialize The Path Of Your Website */}
+
+            <Route path='/Create' Component={Create} /> {/* Route path to Create Component*/}
+
+            <Route path='blogs/:id' Component={BlogDetails} /> {/* Route path that Shows Your Blog Details*/}
+
+            <Route path='*' Component={NotFound} /> {/* Route path that Prompts When User inputs an Unkown url*/}
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
